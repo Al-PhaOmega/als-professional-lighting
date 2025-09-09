@@ -1,6 +1,6 @@
 -- [[ Multi-light lens flare ]] --
 
-local screenSpace = require(script:WaitForChild("ScreenSpace"))
+local screenSpace = require(game:GetService("ReplicatedStorage"):WaitForChild("ScreenSpace"))
 
 local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
@@ -10,7 +10,7 @@ local TweenService = game:GetService("TweenService")
 local camera = workspace.CurrentCamera
 local localPlayer = Players.LocalPlayer
 local playerGui = localPlayer:WaitForChild("PlayerGui")
-local flareTemplate = playerGui:WaitForChild("LensFlareTemplate")
+local flareTemplate = playerGui:WaitForChild("LightLensFlare")
 
 local tweenInfo = TweenInfo.new(0.025, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut)
 local zOffsetDistance = script:GetAttribute("ZOffset")
@@ -261,9 +261,9 @@ local function onRender()
 			-- 3) occlusion/off-screen gating
 			local absDist = Vector2.new(math.abs(toCenter.X), math.abs(toCenter.Y))
 			local strength = anchor:GetAttribute("LensFlareStrength") or 1
-			local baseT = (obj:GetAttribute("Transparency") or 0) +
+			local baseT = (obj:GetAttribute("FlareTransparency") or 0) +
 				((((absDist / screenCenter).Magnitude) / aspect) / math.max(strength, 0.001))
-			baseT = math.clamp(baseT, obj:GetAttribute("Transparency") or 0, 1)
+			baseT = math.clamp(baseT, obj:GetAttribute("FlareTransparency") or 0, 1)
 
 			local d = (camPos - worldPos).Magnitude
 			local visFactor = math.clamp(1 - ((d - 20) / 10), 0, 1) -- 1 @10, 0 @>=20
