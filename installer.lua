@@ -1,5 +1,9 @@
 local Http = game:GetService("HttpService")
 
+local codes = {}
+codes.Fog = 'https://raw.githubusercontent.com/Al-PhaOmega/als-professional-lighting/refs/heads/main/VolumetricFog.lua'
+codes.Flare = 'https://raw.githubusercontent.com/Al-PhaOmega/als-professional-lighting/refs/heads/main/LensFlare.lua'
+
 local framework = Instance.new("Folder", game.StarterPlayer.StarterPlayerScripts)
 framework.Name = "APL_Client"
 
@@ -15,6 +19,10 @@ module:SetAttribute("Transparency", 0.995)
 
 local VolumetricFog = Instance.new("LocalScript", framework)
 VolumetricFog.Name = "VolumetricFog"
-VolumetricFog.Source = Http:GetAsync("https://raw.githubusercontent.com/Al-PhaOmega/als-professional-lighting/main/VolumetricFog.lua")
+VolumetricFog.Source = codes.Fog
+
+local LensFlares = Instance.new("LocalScript", framework)
+LensFlares.Name = "LensFlares"
+LensFlares.Source = codes.Flare
 
 warn("INSTALLED APL. ||| PLEASE ENJOY")
