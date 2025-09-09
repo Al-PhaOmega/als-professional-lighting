@@ -20,15 +20,15 @@ module:SetAttribute("Transparency", 0.995)
 
 local VolumetricFog = Instance.new("LocalScript", framework)
 VolumetricFog.Name = "VolumetricFog"
-VolumetricFog.Source = codes.Fog
+VolumetricFog.Source = Http:GetAsync(codes.Fog)
 
 local LensFlares = Instance.new("LocalScript", framework)
 LensFlares.Name = "LensFlares"
-LensFlares.Source = codes.Flare
+LensFlares.Source = Http:GetAsync(codes.Flare)
 
 local ScreenSpace = Instance.new("ModuleScript", game.ReplicatedStorage)
 ScreenSpace.Name = "ScreenSpace"
-ScreenSpace.Source = codes.SS
+ScreenSpace.Source = Http:GetAsync(codes.SS)
 
 local LightLensFlare = Instance.new("SurfaceGui", game.StarterGui)
 LightLensFlare.Name = "LightLensFlare"
